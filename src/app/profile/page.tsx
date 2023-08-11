@@ -11,7 +11,7 @@ interface IUserDetails {
 }
 
 export default function ProfilePage() {
-  const [userDetails, setUserDetails]  = useState<any>("");
+  const [userDetails, setUserDetails]  = useState<any>({});
   const router = useRouter();
   
   async function logOut() {
@@ -22,6 +22,9 @@ export default function ProfilePage() {
       console.log(error);
     }
   }
+
+  console.log(userDetails);
+  
 
   async function getDetails(){
     try {

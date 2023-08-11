@@ -1,15 +1,6 @@
-// i18n.ts
-import NextI18Next from 'next-i18next';
+export const i18n = {
+  defaultLocale: "en",
+  locales: ["en", "de"]
+} as const;
 
-const NextI18NextInstance = new NextI18Next({
-  defaultLanguage: 'en', // Set your default language here
-  otherLanguages: ['es'], // Add other supported languages here
-  localeSubpaths: 'all',
-});
-
-export const {
-  appWithTranslation,
-  useTranslation,
-  withTranslation,
-  i18n,
-} = NextI18NextInstance;
+export type Locale = (typeof i18n)["locales"][number]

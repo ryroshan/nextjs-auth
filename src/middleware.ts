@@ -8,6 +8,11 @@ export async function middleware(request: NextRequest){
     const isPublicPath = path == '/signup' || path == '/login';
 
     const token = request.cookies.get('token')?.value || '';
+    const isAdmin = request.cookies.get('isAdmin')?.value || '';
+
+    // if(!isAdmin){
+    //     return NextResponse.redirect(new URL('/', request.nextUrl));
+    // }
 
     if(isPublicPath && token){
         return NextResponse.redirect(new URL('/', request.nextUrl))
@@ -15,6 +20,7 @@ export async function middleware(request: NextRequest){
     if(!isPublicPath && !token){
         return NextResponse.redirect(new URL('/login', request.nextUrl));
     }
+
 }
 
 // matching paths
@@ -25,5 +31,6 @@ export const config = {
         '/profile',
         '/login',
         '/signup',
+        '/getallusers'
     ]
 }

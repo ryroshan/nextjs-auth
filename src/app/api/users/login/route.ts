@@ -36,7 +36,8 @@ export async function POST(request: NextRequest){
         const tokenData = {
             id : user._id,
             username: user.username,
-            email: user.email
+            email: user.email,
+            isAdmin : user.isAdmin
         }
 
         console.log(tokenData);
@@ -49,9 +50,11 @@ export async function POST(request: NextRequest){
       const response = NextResponse.json({
         message: "Login SucussFully!",
         success: true,
+        isAdmin: user.isAdmin
       });
       
       response.cookies.set('token', token, {httpOnly: true});
+      response.cookies.set('isAdmin', user.isAdmin, {httpOnly: true});
       return response;
 
     } catch (error:any) {
